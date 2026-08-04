@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>Admin_Web_API</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Admin-Portal.Application\Admin-Portal.Application.csproj" />
+    <ProjectReference Include="..\Admin-Portal.Contracts\Admin-Portal.Contracts.csproj" />
+    <ProjectReference Include="..\Admin-Portal.Infrastructure\Admin-Portal.Infrastructure.csproj" />
+    <ProjectReference Include="..\Admin-Portal.Shared\Admin-Portal.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

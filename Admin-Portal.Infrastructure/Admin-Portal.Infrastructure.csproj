@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Admin_Portal.Infrastructure</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Admin-Portal.Core\Admin-Portal.Core.csproj" />
+    <ProjectReference Include="..\Admin-Portal.Shared\Admin-Portal.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Admin\Configurations\" />
+    <Folder Include="Admin\Repositories\" />
+  </ItemGroup>
+
+</Project>

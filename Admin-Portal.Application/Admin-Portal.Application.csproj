@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Admin_Portal.Application</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Admin-Portal.Contracts\Admin-Portal.Contracts.csproj" />
+    <ProjectReference Include="..\Admin-Portal.Core\Admin-Portal.Core.csproj" />
+    <ProjectReference Include="..\Admin-Portal.Shared\Admin-Portal.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Admin\Interfaces\" />
+    <Folder Include="Admin\Mappings\" />
+    <Folder Include="Admin\Validators\" />
+    <Folder Include="Admin\Services\" />
+  </ItemGroup>
+
+</Project>

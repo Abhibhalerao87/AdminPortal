@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>Admin_Portal.Core</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Admin\Entities\" />
+    <Folder Include="Admin\Interfaces\" />
+    <Folder Include="Admin\Enums\" />
+    <Folder Include="Admin\" />
+  </ItemGroup>
+
+</Project>
