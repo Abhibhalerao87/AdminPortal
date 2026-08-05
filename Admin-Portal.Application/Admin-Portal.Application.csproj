@@ -14,10 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Admin\Interfaces\" />
     <Folder Include="Admin\Mappings\" />
     <Folder Include="Admin\Validators\" />
-    <Folder Include="Admin\Services\" />
   </ItemGroup>
 
 </Project>
