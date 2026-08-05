@@ -7,11 +7,4 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="Admin\Entities\" />
-    <Folder Include="Admin\Interfaces\" />
-    <Folder Include="Admin\Enums\" />
-    <Folder Include="Admin\" />
-  </ItemGroup>
-
 </Project>

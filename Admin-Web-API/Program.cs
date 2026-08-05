@@ -1,4 +1,11 @@
 
+using Admin_Portal.Application.Admin.Interfaces;
+using Admin_Portal.Application.Admin.Services;
+using Admin_Portal.Core.Admin.Interfaces;
+using Admin_Portal.Infrastructure.Admin.Data;
+using Admin_Portal.Infrastructure.Admin.Repositories;
+using Microsoft.EntityFrameworkCore;
+
 namespace Admin_Web_API
 {
     public class Program
@@ -9,10 +16,33 @@ namespace Admin_Web_API
 
             // Add services to the container.
 
+            // Configure Database Context
+            var connectionString = builder.Configuration.GetConnectionString("AdminPortalConnection");
+            builder.Services.AddDbContext<AdminPortalDbContext>(options =>
+                options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Admin-Portal.Infrastructure"))
+            );
+
+            // Register repositories
+            builder.Services.AddScoped<IAdminUserRepository, AdminUserRepository>();
+
+            // Register services
+            builder.Services.AddScoped<IAdminAuthService, AdminAuthService>();
+
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            // Add CORS
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
 
             var app = builder.Build();
 
@@ -25,10 +55,18 @@ namespace Admin_Web_API
 
             app.UseHttpsRedirection();
 
+            app.UseCors("AllowAll");
+
             app.UseAuthorization();
 
-
             app.MapControllers();
+
+            // Run database migrations automatically on startup
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AdminPortalDbContext>();
+                dbContext.Database.Migrate();
+            }
 
             app.Run();
         }
