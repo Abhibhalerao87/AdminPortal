@@ -1,9 +1,13 @@
 
 using Admin_Portal.Application.Admin.Interfaces;
 using Admin_Portal.Application.Admin.Services;
+using Admin_Portal.Application.Bookings.Interfaces;
+using Admin_Portal.Application.Bookings.Services;
 using Admin_Portal.Core.Admin.Interfaces;
+using Admin_Portal.Core.Bookings.Interfaces;
 using Admin_Portal.Infrastructure.Admin.Data;
 using Admin_Portal.Infrastructure.Admin.Repositories;
+using Admin_Portal.Infrastructure.Bookings.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace Admin_Web_API
@@ -24,9 +28,11 @@ namespace Admin_Web_API
 
             // Register repositories
             builder.Services.AddScoped<IAdminUserRepository, AdminUserRepository>();
+            builder.Services.AddScoped<IBookingRepository, BookingRepository>();
 
             // Register services
             builder.Services.AddScoped<IAdminAuthService, AdminAuthService>();
+            builder.Services.AddScoped<IBookingService, BookingService>();
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -62,11 +68,11 @@ namespace Admin_Web_API
             app.MapControllers();
 
             // Run database migrations automatically on startup
-            using (var scope = app.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AdminPortalDbContext>();
-                dbContext.Database.Migrate();
-            }
+            //using (var scope = app.Services.CreateScope())
+            //{
+            //    var dbContext = scope.ServiceProvider.GetRequiredService<AdminPortalDbContext>();
+            //    dbContext.Database.Migrate();
+            //}
 
             app.Run();
         }

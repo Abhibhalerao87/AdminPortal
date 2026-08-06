@@ -1,4 +1,5 @@
 using Admin_Portal.Core.Admin.Entities;
+using Admin_Portal.Core.Bookings.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Admin_Portal.Infrastructure.Admin.Data
@@ -10,6 +11,8 @@ namespace Admin_Portal.Infrastructure.Admin.Data
         }
 
         public DbSet<AdminUser> AdminUsers { get; set; } = null!;
+
+        public DbSet<Booking> Bookings { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -41,6 +44,40 @@ namespace Admin_Portal.Infrastructure.Admin.Data
 
                 entity.HasIndex(e => e.Email)
                     .IsUnique();
+            });
+
+            // Configure Booking entity
+            modelBuilder.Entity<Booking>(entity =>
+            {
+                entity.HasKey(e => e.Id);
+
+                entity.Property(e => e.CompanyName)
+                    .IsRequired()
+                    .HasMaxLength(250);
+
+                entity.Property(e => e.HrMail)
+                    .IsRequired()
+                    .HasMaxLength(1000);
+
+                entity.Property(e => e.Status)
+                    .IsRequired()
+                    .HasConversion<int>();
+
+                entity.Property(e => e.RejectionReason)
+                    .HasMaxLength(500);
+
+                entity.Property(e => e.CreatedAt)
+                    .HasDefaultValueSql("GETUTCDATE()");
+
+                entity.Property(e => e.UpdatedAt)
+                    .HasDefaultValueSql("GETUTCDATE()");
+
+                // Create indexes for better query performance
+                entity.HasIndex(e => e.UserId);
+                entity.HasIndex(e => e.AdminId);
+                entity.HasIndex(e => e.Status);
+                entity.HasIndex(e => new { e.UserId, e.Status });
+                entity.HasIndex(e => new { e.AdminId, e.Status });
             });
         }
     }

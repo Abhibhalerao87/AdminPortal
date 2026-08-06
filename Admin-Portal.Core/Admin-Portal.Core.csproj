@@ -7,4 +7,10 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Appointment\Entities\" />
+    <Folder Include="Appointment\Enums\" />
+    <Folder Include="Appointment\Interfaces\" />
+  </ItemGroup>
+
 </Project>
