@@ -28,7 +28,7 @@ namespace Admin_Portal.Application.Admin.Services
                 response.Success = false;
                 response.Message = "Validation failed";
                 response.Errors = validationErrors;
-                return response;
+                return response;  
             }
 
             // Check if user already exists
@@ -119,6 +119,12 @@ namespace Admin_Portal.Application.Admin.Services
             response.Message = "Login successful";
             response.User = MapToAdminUserDto(adminUser);
             return response;
+        }
+
+        public async Task<IEnumerable<AdminUser>> GetAllUsers()
+        {
+            var adminUser = await _adminUserRepository.GetAllAsync();
+            return adminUser;
         }
 
         private List<string> ValidateRegisterRequest(RegisterRequest request)

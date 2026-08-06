@@ -16,6 +16,8 @@
   <ItemGroup>
     <Folder Include="Admin\Mappings\" />
     <Folder Include="Admin\Validators\" />
+    <Folder Include="Appointment\Interfaces\" />
+    <Folder Include="Appointment\Services\" />
   </ItemGroup>
 
 </Project>

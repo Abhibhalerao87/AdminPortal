@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <Folder Include="Admin\Configurations\" />
+    <Folder Include="Appointment\Repositories\" />
   </ItemGroup>
 
 </Project>

@@ -1,6 +1,7 @@
-using Microsoft.AspNetCore.Mvc;
 using Admin_Portal.Application.Admin.Interfaces;
+using Admin_Portal.Application.Admin.Services;
 using Admin_Portal.Contracts.Admin.Requests;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Admin_Web_API.Controllers
 {
@@ -76,6 +77,17 @@ namespace Admin_Web_API.Controllers
 
             _logger.LogInformation($"User logged in successfully: {request.Username}");
             return Ok(response);
+        }
+
+        [HttpGet("profile")]
+        public async Task<IActionResult> Profile()
+        {
+            var user = await _authService.GetAllUsers();
+
+            if (user == null)
+                return NotFound();
+
+            return Ok(user);
         }
     }
 }
