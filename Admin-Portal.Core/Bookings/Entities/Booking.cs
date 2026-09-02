@@ -1,4 +1,5 @@
 using Admin_Portal.Core.Bookings.Enums;
+using Admin_Portal.Core.Admin.Entities;
 
 namespace Admin_Portal.Core.Bookings.Entities
 {
@@ -28,6 +29,6 @@ namespace Admin_Portal.Core.Bookings.Entities
 
         public DateTime? AcceptedAt { get; set; }
 
-
+        public AdminUser? Admin { get; set; }
     }
 }

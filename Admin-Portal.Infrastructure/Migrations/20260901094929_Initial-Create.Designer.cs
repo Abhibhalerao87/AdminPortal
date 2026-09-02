@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Admin_Portal.Infrastructure.Migrations
 {
     [DbContext(typeof(AdminPortalDbContext))]
-    [Migration("20260805180359_InitialCreate")]
+    [Migration("20260901094929_Initial-Create")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -34,7 +34,7 @@ namespace Admin_Portal.Infrastructure.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2026, 8, 5, 18, 3, 58, 987, DateTimeKind.Utc).AddTicks(4411));
+                        .HasDefaultValue(new DateTime(2026, 9, 1, 9, 49, 29, 39, DateTimeKind.Utc).AddTicks(8841));
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -135,6 +135,21 @@ namespace Admin_Portal.Infrastructure.Migrations
                     b.HasIndex("UserId", "Status");
 
                     b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("Admin_Portal.Core.Bookings.Entities.Booking", b =>
+                {
+                    b.HasOne("Admin_Portal.Core.Admin.Entities.AdminUser", "Admin")
+                        .WithMany("Bookings")
+                        .HasForeignKey("AdminId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Admin");
+                });
+
+            modelBuilder.Entity("Admin_Portal.Core.Admin.Entities.AdminUser", b =>
+                {
+                    b.Navigation("Bookings");
                 });
 #pragma warning restore 612, 618
         }

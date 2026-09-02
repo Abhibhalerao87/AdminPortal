@@ -21,7 +21,7 @@ namespace Admin_Portal.Infrastructure.Migrations
                     PasswordHash = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
                     Role = table.Column<int>(type: "int", nullable: false),
                     IsActive = table.Column<bool>(type: "bit", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2026, 8, 5, 18, 3, 58, 987, DateTimeKind.Utc).AddTicks(4411)),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false, defaultValue: new DateTime(2026, 9, 1, 9, 49, 29, 39, DateTimeKind.Utc).AddTicks(8841)),
                     UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true),
                     LastLoginAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
@@ -50,6 +50,12 @@ namespace Admin_Portal.Infrastructure.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Bookings", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Bookings_AdminUsers_AdminId",
+                        column: x => x.AdminId,
+                        principalTable: "AdminUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.SetNull);
                 });
 
             migrationBuilder.CreateIndex(
@@ -94,10 +100,10 @@ namespace Admin_Portal.Infrastructure.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AdminUsers");
+                name: "Bookings");
 
             migrationBuilder.DropTable(
-                name: "Bookings");
+                name: "AdminUsers");
         }
     }
 }

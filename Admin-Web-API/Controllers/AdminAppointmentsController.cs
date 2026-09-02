@@ -92,10 +92,10 @@ namespace Admin_Web_API.Controllers
         /// Accept booking (Admin only)
         /// </summary>
         [HttpPut("{id}/accept")]
-        public async Task<IActionResult> AcceptBooking(Guid id, [FromBody] AcceptBookingRequest request)
+        public async Task<IActionResult> AcceptBooking(Guid id, Guid adminid, [FromBody] AcceptBookingRequest request)
         {
             // TODO: Get adminId from authenticated admin user
-            var adminId = Guid.Parse("22222222-2222-2222-2222-222222222222"); // Placeholder
+            var adminId = adminid; // Placeholder
 
             var result = await _bookingService.AcceptBookingAsync(id, adminId);
 
