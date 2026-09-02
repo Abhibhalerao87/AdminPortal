@@ -1,4 +1,5 @@
 using Admin_Portal.Core.Admin.Enums;
+using Admin_Portal.Core.Bookings.Entities;
 
 namespace Admin_Portal.Core.Admin.Entities
 {
@@ -21,5 +22,7 @@ namespace Admin_Portal.Core.Admin.Entities
         public DateTime? UpdatedAt { get; set; }
 
         public DateTime? LastLoginAt { get; set; }
+
+        public ICollection<Booking> Bookings { get; set; } = new List<Booking>();
     }
 }
